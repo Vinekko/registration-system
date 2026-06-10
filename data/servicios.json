@@ -1,0 +1,37 @@
+{
+  "categorias": [
+    {
+      "nombre": "Servicios a Colegios",
+      "servicios": [
+        "Programa Curricular en Robótica Educativa",
+        "Formación docente continua en tecnologías de vanguardia",
+        "Competencias de Robótica",
+        "Equipos de Robótica Educativa",
+        "Evaluaciones de desempeño docente"
+      ]
+    },
+    {
+      "nombre": "Servicios de Formación Académica",
+      "servicios": [
+        "Robótica Educativa (niños y adolescentes)",
+        "Fundamentos de programación, diseño de videojuegos, diseño y programación de robots"
+      ]
+    },
+    {
+      "nombre": "Tecnologías Web + IA",
+      "servicios": [
+        "Programación de aplicaciones WEB desde Cero + IA – Nivel I",
+        "Programación de aplicaciones WEB FrontEnd – Nivel II",
+        "Diseño de Agentes de IA – Nivel III"
+      ]
+    },
+    {
+      "nombre": "Análisis de Datos",
+      "servicios": [
+        "Análisis exploratorio de datos – Nivel I",
+        "Técnicas de visualización de datos – Nivel II",
+        "Fundamentos de Machine Learning – Nivel III"
+      ]
+    }
+  ]
+}

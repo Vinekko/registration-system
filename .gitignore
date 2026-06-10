@@ -1,1 +1,35 @@
-.venv
+
+# Archivos de entorno virtual (muy importante)
+.venv/
+venv/
+ENV/
+env/
+
+# Bytecode de Python y cachés
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Directorio de distribución
+dist/
+build/
+*.egg-info/
+
+# Archivos de IDEs y texto plano
+.idea/
+.vscode/
+*.swp
+*.swo
+*.bak
+*.log
+*.txt  # Puedes comentar esta línea si quieres subir logs
+
+# Archivos de Mac
+.DS_Store
+
+# Archivos de Jupyter Notebooks (si usas)
+.ipynb_checkpoints/
+
+# Data
+data/data.json
