@@ -1,3 +1,12 @@
 {
-  "registros": []
+  "registros": [
+    {
+      "nombre": "Vincenzo",
+      "telefono": "0412-8347775",
+      "email": "vincenzofernandez2@gmail.com",
+      "servicio": "Programación de aplicaciones WEB FrontEnd – Nivel II",
+      "id": 1,
+      "fecha_registro": "2026-06-10 19:49:01"
+    }
+  ]
 }

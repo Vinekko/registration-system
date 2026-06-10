@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>Adakademy - Sistema de Registro</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <span class="logo-icon">🤖</span>
+                    <h1>adakademy</h1>
+                </div>
+                <p class="tagline">Sistema de Registro de Servicios</p>
+            </div>
+        </header>
+
+        <!-- Pestañas -->
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="registro">
+                <span class="tab-icon">📝</span>
+                <span>Registro</span>
+            </button>
+            <button class="tab-btn" data-tab="lista">
+                <span class="tab-icon">📋</span>
+                <span>Lista</span>
+            </button>
+        </div>
+
+        <!-- Contenido Pestaña REGISTRO -->
+        <div id="tab-registro" class="tab-content active">
+            <div class="form-card">
+                <h2>Registro de Participantes</h2>
+                
+                <form id="registroForm">
+                    <div class="form-group">
+                        <label for="nombre">
+                            <span class="label-icon">📛</span>
+                            Nombre completo
+                        </label>
+                        <input type="text" id="nombre" name="nombre" required 
+                               placeholder="Ej: Ana María Pérez García"
+                               autocomplete="name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telefono">
+                            <span class="label-icon">📱</span>
+                            Teléfono
+                        </label>
+                        <input type="tel" id="telefono" name="telefono" required 
+                               placeholder="Ej: +1234567890 o 555-1234"
+                               autocomplete="tel">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">
+                            <span class="label-icon">✉️</span>
+                            Correo electrónico
+                        </label>
+                        <input type="email" id="email" name="email" required 
+                               placeholder="Ej: ana@ejemplo.com"
+                               autocomplete="email">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="servicio">
+                            <span class="label-icon">🎯</span>
+                            Servicio de interés
+                        </label>
+                        <select id="servicio" name="servicio" required>
+                            <option value="">-- Cargando servicios... --</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn-primary">
+                        <span class="btn-icon">✅</span>
+                        Registrar Participante
+                    </button>
+                </form>
+
+                <div id="mensaje" class="message" style="display: none;"></div>
+            </div>
+        </div>
+
+        <!-- Contenido Pestaña LISTA -->
+        <div id="tab-lista" class="tab-content">
+            <div class="list-card">
+                <div class="list-header">
+                    <div class="stats">
+                        <span class="stats-icon">👥</span>
+                        <span id="totalRegistros">Total: 0 participantes</span>
+                    </div>
+                    <div class="list-actions">
+                        <button id="btnRefrescar" class="btn-secondary">
+                            <span class="btn-icon">🔄</span>
+                            Refrescar
+                        </button>
+                        <button id="btnExportar" class="btn-success">
+                            <span class="btn-icon">📊</span>
+                            Exportar Excel
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Contenedor de la tabla con paginación -->
+                <div class="table-container">
+                    <div id="loadingIndicator" class="loading" style="display: none;">
+                        <div class="spinner"></div>
+                        <p>Cargando registros...</p>
+                    </div>
+                    <div id="tablaContainer"></div>
+                </div>
+
+                <!-- Controles de paginación -->
+                <div id="paginacion" class="pagination" style="display: none;">
+                    <button id="btnAnterior" class="pagination-btn" disabled>
+                        ← Anterior
+                    </button>
+                    <span id="paginaInfo" class="pagination-info">Página 1 de 1</span>
+                    <button id="btnSiguiente" class="pagination-btn" disabled>
+                        Siguiente →
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>

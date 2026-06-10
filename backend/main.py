@@ -106,14 +106,34 @@ async def serve_index():
     return "<h1>Error: index.html no encontrado</h1>"
 
 # ==================== INICIO ====================
+def get_local_ip():
+    """Obtiene la IP local de la red WiFi/LAN"""
+    import socket
+    try:
+        # Crea un socket UDP y se conecta a una IP pública (no envía datos)
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.connect(("8.8.8.8", 80))
+        ip = s.getsockname()[0]
+        s.close()
+        return ip
+    except Exception:
+        return "127.0.0.1"
+
 if __name__ == "__main__":
     import uvicorn
+    
+    PORT = 8000
+    local_ip = get_local_ip()
+    
     print("=" * 50)
     print("🚀 Servidor Adakademy Registration System")
     print("=" * 50)
     print(f"📁 Datos guardados en: data/data.json")
     print(f"📋 Servicios cargados desde: data/servicios.json")
-    print("🌐 Servidor corriendo en: http://0.0.0.0:8000")
-    print("📱 Accede desde tablets en la misma WiFi con esa IP")
+    print()
+    print(f"🖥️  Local:   http://localhost:{PORT}")
+    print(f"📱 Red WiFi: http://{local_ip}:{PORT}")
+    print()
+    print("👆 Comparte el enlace de Red WiFi con otros dispositivos")
     print("=" * 50)
-    uvicorn.run(app, host="0.0.0.0", port=8000, log_level="info")
+    uvicorn.run(app, host="0.0.0.0", port=PORT, log_level="info")
