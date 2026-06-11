@@ -54,3 +54,7 @@ class DataManager:
         servicios_path = "data/servicios.json"
         with open(servicios_path, 'r', encoding='utf-8') as f:
             return json.load(f)
+    
+    def clear_registros(self):
+        """Elimina todos los registros"""
+        self._write_data({"registros": []})

@@ -379,6 +379,40 @@ function inicializarEventos() {
     if (btnSiguiente) {
         btnSiguiente.addEventListener('click', paginaSiguiente);
     }
+    
+    // Botón limpiar lista
+    const btnLimpiar = document.getElementById('btnLimpiar');
+    if (btnLimpiar) {
+        btnLimpiar.addEventListener('click', limpiarRegistros);
+    }
+}
+
+// ==================== LIMPIAR REGISTROS ====================
+
+async function limpiarRegistros() {
+    const confirmacion = confirm('⚠️ ¿Estás seguro de que deseas eliminar TODOS los registros?\n\nEsta acción no se puede deshacer.');
+    
+    if (!confirmacion) return;
+    
+    try {
+        const response = await fetch(`${API_BASE}/api/registros`, {
+            method: 'DELETE'
+        });
+        
+        const result = await response.json();
+        
+        if (response.ok) {
+            // Recargar la lista vacía
+            paginaActual = 1;
+            await cargarRegistros();
+            alert('✅ ' + result.message);
+        } else {
+            alert('❌ Error: ' + (result.detail || 'No se pudo limpiar la lista'));
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('❌ Error de conexión al intentar limpiar los registros');
+    }
 }
 
 // ==================== INICIALIZACIÓN ====================

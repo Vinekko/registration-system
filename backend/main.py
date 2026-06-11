@@ -95,6 +95,15 @@ async def exportar_excel():
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error al generar Excel: {str(e)}")
 
+@app.delete("/api/registros")
+async def limpiar_registros():
+    """Elimina todos los registros"""
+    try:
+        data_manager.clear_registros()
+        return {"success": True, "message": "Todos los registros han sido eliminados"}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error al limpiar registros: {str(e)}")
+
 # ==================== SERVIDOR HTML ====================
 
 @app.get("/", response_class=HTMLResponse)

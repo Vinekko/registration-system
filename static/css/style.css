@@ -180,7 +180,7 @@ body {
 }
 
 /* Botones */
-.btn-primary, .btn-secondary, .btn-success {
+.btn-primary, .btn-secondary, .btn-success, .btn-danger {
     width: 100%;
     padding: 14px;
     border: none;
@@ -225,6 +225,15 @@ body {
 
 .btn-success:hover {
     background: var(--success-dark);
+}
+
+.btn-danger {
+    background: var(--danger);
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #e53e3e;
 }
 
 /* Lista y tabla */
