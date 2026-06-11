@@ -6,12 +6,12 @@
 }
 
 :root {
-    --primary: #667eea;
-    --primary-dark: #5a67d8;
-    --secondary: #764ba2;
-    --success: #48bb78;
-    --success-dark: #38a169;
-    --danger: #f56565;
+    --primary: #1976d2; /* Azul más oscuro (navy/royal blue) */
+    --primary-dark: #115293; /* Azul muy oscuro para hover */
+    --secondary: #2e7d32; /* Verde más oscuro (forest green) */
+    --success: #2e7d32; /* Verde oscuro de éxito */
+    --success-dark: #1b5e20; /* Verde muy oscuro para hover */
+    --danger: #d32f2f; /* Rojo más oscuro */
     --gray-light: #f7fafc;
     --gray: #e2e8f0;
     --gray-dark: #a0aec0;
