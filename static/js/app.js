@@ -18,9 +18,12 @@ function mostrarMensaje(elemento, mensaje, tipo) {
     }, 3000);
 }
 
-// ==================== CARGA DE SERVICIOS ====================
+// ==================== CARGA DE SERVICIOS (CASCADA) ====================
+
+let categoriasData = []; // Almacena los datos de categorías globalmente
 
 async function cargarServicios() {
+    const selectCategoria = document.getElementById('categoria');
     const selectServicio = document.getElementById('servicio');
     
     try {
@@ -31,28 +34,47 @@ async function cargarServicios() {
         }
         
         const data = await response.json();
+        categoriasData = data.categorias;
         
-        // Limpiar select
-        selectServicio.innerHTML = '<option value="">-- Selecciona un servicio --</option>';
+        // Poblar el select de categorías
+        selectCategoria.innerHTML = '<option value="">-- Selecciona una categoría --</option>';
         
-        // Agregar grupos de servicios con optgroup
-        data.categorias.forEach(categoria => {
-            const optgroup = document.createElement('optgroup');
-            optgroup.label = categoria.nombre;
+        categoriasData.forEach(categoria => {
+            const option = document.createElement('option');
+            option.value = categoria.nombre;
+            option.textContent = categoria.nombre;
+            selectCategoria.appendChild(option);
+        });
+        
+        // Evento: al cambiar categoría, poblar servicios
+        selectCategoria.addEventListener('change', () => {
+            const categoriaSeleccionada = selectCategoria.value;
             
-            categoria.servicios.forEach(servicio => {
-                const option = document.createElement('option');
-                option.value = servicio;
-                option.textContent = servicio;
-                optgroup.appendChild(option);
-            });
+            // Resetear servicio
+            selectServicio.innerHTML = '<option value="">-- Selecciona un servicio --</option>';
             
-            selectServicio.appendChild(optgroup);
+            if (!categoriaSeleccionada) {
+                selectServicio.disabled = true;
+                return;
+            }
+            
+            // Buscar servicios de la categoría seleccionada
+            const categoria = categoriasData.find(c => c.nombre === categoriaSeleccionada);
+            
+            if (categoria) {
+                categoria.servicios.forEach(servicio => {
+                    const option = document.createElement('option');
+                    option.value = servicio;
+                    option.textContent = servicio;
+                    selectServicio.appendChild(option);
+                });
+                selectServicio.disabled = false;
+            }
         });
         
     } catch (error) {
         console.error('Error:', error);
-        selectServicio.innerHTML = '<option value="">Error al cargar servicios</option>';
+        selectCategoria.innerHTML = '<option value="">Error al cargar categorías</option>';
     }
 }
 
@@ -95,6 +117,10 @@ async function registrarParticipante(event) {
         if (response.ok) {
             mostrarMensaje(mensajeDiv, `✅ ${result.message}`, 'success');
             document.getElementById('registroForm').reset();
+            // Volver a bloquear el select de servicio tras el reset
+            const selectServicio = document.getElementById('servicio');
+            selectServicio.innerHTML = '<option value="">-- Selecciona una categoría primero --</option>';
+            selectServicio.disabled = true;
         } else {
             mostrarMensaje(mensajeDiv, `❌ Error: ${result.detail || 'Ocurrió un error'}`, 'error');
         }

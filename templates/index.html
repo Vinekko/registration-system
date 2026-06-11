@@ -68,12 +68,22 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="categoria">
+                            <span class="label-icon">📂</span>
+                            Categoría de servicio
+                        </label>
+                        <select id="categoria" name="categoria" required>
+                            <option value="">-- Cargando categorías... --</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
                         <label for="servicio">
                             <span class="label-icon">🎯</span>
                             Servicio de interés
                         </label>
-                        <select id="servicio" name="servicio" required>
-                            <option value="">-- Cargando servicios... --</option>
+                        <select id="servicio" name="servicio" required disabled>
+                            <option value="">-- Selecciona una categoría primero --</option>
                         </select>
                     </div>
 
